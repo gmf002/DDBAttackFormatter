@@ -11,7 +11,6 @@ function App() {
   const [fixedDamage, setFixedDamage] = useState(5);
   const [randomDamage, setRandomDamage] = useState("1d6+2");
   const [damageType, setDamageType] = useState("slashing");
-  //const damageType = "slashing";
 
   return (
     <>

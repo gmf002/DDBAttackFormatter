@@ -1,91 +1,124 @@
 import { useState } from "react";
+import { InputText } from "primereact/inputtext";
+import { InputNumber } from "primereact/inputnumber";
+import { InputTextarea } from "primereact/inputtextarea"
+
+import { Dropdown } from "primereact/dropdown";
+
 import "./App.css";
+import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 import { DisplayOutput } from "./components/DisplayOutput";
+import { Card } from "primereact/card";
+
+const damageTypes = [
+  "acid",
+  "bludgeoning",
+  "cold",
+  "fire",
+  "force",
+  "lightning",
+  "necrotic",
+  "piercing",
+  "poison",
+  "psychic",
+  "radiant",
+  "slashing",
+  "thunder",
+];
+
+const attackTypes = ["Melee Weapon Attack", "Ranged Weapon Attack"];
 
 function App() {
   const [attackName, setAttackName] = useState("Claw");
   const [attackType, setAttackType] = useState("Melee Weapon Attack");
-  const [toHitBonus, setToHitBonus] = useState(3);
+  const [toHitBonus, setToHitBonus] = useState<number | null>(3);
   const [reach, setReach] = useState("10");
   const [target, setTarget] = useState("one");
-  const [fixedDamage, setFixedDamage] = useState(5);
+  const [fixedDamage, setFixedDamage] = useState<number | null>(5);
   const [randomDamage, setRandomDamage] = useState("1d6+2");
   const [damageType, setDamageType] = useState("slashing");
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          {" "}
-          Vite.dev
-        </a>
-        <a href="https://react.dev" target="_blank">
-          {" "}
-          React.dev
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <div style={{ display: "block" }}>
-          <div>
-            <span>
-              Attack Name:
-              <input
-                value={attackName}
-                onChange={(e) => setAttackName(e.target.value)}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              Attack Type:{" "}
-              <input
-                value={attackType}
-                onChange={(e) => setAttackType(e.target.value)}
-              />
-            </span>
-          </div>
-          <div>
-            <span>
-              To Hit Bonus:{" "}
-              <input
-                type="number"
-                value={toHitBonus}
-                onChange={(e) => setToHitBonus(Number.parseInt(e.target.value))}
-              />
-            </span>
-          </div>
-          <div>
-            <span>Reach: </span>
-            <input value={reach} onChange={(e) => setReach(e.target.value)} />
-          </div>
-          <div>
-            <span>Target: </span>
-            <input value={target} onChange={(e) => setTarget(e.target.value)} />
-          </div>
-          <div>
-            <span>Fixed Damage: </span>
-            <input
-              value={fixedDamage}
-              onChange={(e) => setFixedDamage(Number.parseInt(e.target.value))}
+    <Card title="Scratch pad">
+      <InputTextarea autoResize className="w-full h-5rem" />
+    </Card>
+      <Card title="Selections:">
+        <div className="field grid">
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Attack Name:</label>
+          <div className="col-12 md:col-10">
+            <InputText
+              value={attackName}
+              onChange={(e) => setAttackName(e.target.value)}
+              className="w-4"
             />
           </div>
-          <div>
-            <span>Random Damage: </span>
-            <input
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Attack Type:</label>
+          <div className="col-12 md:col-10">
+            <Dropdown
+              value={attackType}
+              onChange={(e) => setAttackType(e.value)}
+              options={attackTypes}
+              editable
+              optionLabel="attack type"
+              placeholder="Select an attack type"
+              className="w-4"
+            />
+          </div>
+          <label className="col-12 mb-2 md:col-2 md:mb-0">To Hit Bonus:</label>
+          <div className="col-12 md:col-10">
+            <InputNumber
+              value={toHitBonus}
+              onChange={(e) => setToHitBonus(e.value)}
+              className="w-4"
+            />
+          </div>
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Reach:</label>
+          <div className="col-12 md:col-10">
+            <InputText
+              value={reach}
+              onChange={(e) => setReach(e.target.value)}
+              className="w-4"
+            />
+          </div>
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Target:</label>
+          <div className="col-12 md:col-10">
+            <InputText
+              value={target}
+              onChange={(e) => setTarget(e.target.value)}
+              className="w-4"
+            />
+          </div>
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Fixed Damage:</label>
+          <div className="col-12 md:col-10">
+            <InputNumber
+              value={fixedDamage}
+              onChange={(e) => setFixedDamage(e.value)}
+              className="w-4"
+            />
+          </div>
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Random Damage:</label>
+          <div className="col-12 md:col-10">
+            <InputText
               value={randomDamage}
               onChange={(e) => setRandomDamage(e.target.value)}
+              className="w-4"
             />
           </div>
-          <div>
-            <span>Damage Type: </span>
-            <input
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Damage Type:</label>
+          <div className="col-12 md:col-10">
+            <Dropdown
               value={damageType}
-              onChange={(e) => setDamageType(e.target.value)}
+              onChange={(e) => setDamageType(e.value)}
+              options={damageTypes}
+              editable
+              optionLabel="damage type"
+              placeholder="Select a damage type"
+              className="w-4"
             />
           </div>
         </div>
-      </div>
+      </Card>
       <div className="card">
         <DisplayOutput
           attackName={attackName}
@@ -98,9 +131,6 @@ function App() {
           damageType={damageType}
         />
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   );
 }

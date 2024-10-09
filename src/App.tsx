@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
-import { InputTextarea } from "primereact/inputtextarea"
+import { InputTextarea } from "primereact/inputtextarea";
 
 import { Dropdown } from "primereact/dropdown";
 
@@ -40,9 +40,9 @@ function App() {
 
   return (
     <>
-    <Card title="Scratch pad">
-      <InputTextarea autoResize className="w-full h-5rem" />
-    </Card>
+      <Card title="Scratch pad">
+        <InputTextarea autoResize className="w-full h-5rem" />
+      </Card>
       <Card title="Selections:">
         <div className="field grid">
           <label className="col-12 mb-2 md:col-2 md:mb-0">Attack Name:</label>
@@ -58,6 +58,7 @@ function App() {
             <Dropdown
               value={attackType}
               onChange={(e) => setAttackType(e.value)}
+              onFocus={(e) => e.target.select()}
               options={attackTypes}
               editable
               optionLabel="attack type"
@@ -110,6 +111,7 @@ function App() {
             <Dropdown
               value={damageType}
               onChange={(e) => setDamageType(e.value)}
+              onFocus={(e) => e.target.select()}
               options={damageTypes}
               editable
               optionLabel="damage type"

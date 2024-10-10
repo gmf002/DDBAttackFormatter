@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { SetStateAction, useState, Dispatch } from "react";
 import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
+import { Checkbox } from "primereact/checkbox";
 
 import { Dropdown } from "primereact/dropdown";
 
@@ -28,8 +29,35 @@ const damageTypes = [
 
 const attackTypes = ["Melee Weapon Attack", "Ranged Weapon Attack"];
 
+interface Props {
+  recharge: Dispatch<SetStateAction<string>>;
+}
+
+
+function Recharge({recharge}: Props) {
+  const [rechargeOn, setRechargeOn] = useState("6");
+  const setRecharge = recharge;
+  
+  setRecharge(rechargeOn);
+
+  return (
+    <>
+      {" "}
+      <label className="col-12 mb-2 md:col-2 md:mb-0">Recharge on:</label>
+      <div className="col-12 md:col-10">
+        <InputText
+          value={rechargeOn}
+          onChange={(e) => setRechargeOn(e.target.value)}
+          className="w-4"
+        />
+      </div>
+    </>
+  );
+}
+
 function App() {
   const [attackName, setAttackName] = useState("Claw");
+  const [hasRecharge, setHasRecharge] = useState(false);
   const [attackType, setAttackType] = useState("Melee Weapon Attack");
   const [toHitBonus, setToHitBonus] = useState<number | null>(3);
   const [reach, setReach] = useState("10");
@@ -37,6 +65,7 @@ function App() {
   const [fixedDamage, setFixedDamage] = useState<number | null>(5);
   const [randomDamage, setRandomDamage] = useState("1d6+2");
   const [damageType, setDamageType] = useState("slashing");
+  const [recharge, setRecharge] = useState<string>("");
 
   return (
     <>
@@ -53,6 +82,15 @@ function App() {
               className="w-4"
             />
           </div>
+          <label className="col-12 mb-2 md:col-2 md:mb-0">Has Recharge:</label>
+          <div className="col-12 md:col-10">
+            <Checkbox
+              checked={hasRecharge}
+              onChange={(e) => setHasRecharge(e.checked ? true : false)}
+              className="w-4"
+            />
+          </div>
+          {hasRecharge ? <Recharge recharge={setRecharge} /> : null}
           <label className="col-12 mb-2 md:col-2 md:mb-0">Attack Type:</label>
           <div className="col-12 md:col-10">
             <Dropdown
@@ -131,6 +169,8 @@ function App() {
           fixedDamage={fixedDamage}
           randomDamage={randomDamage}
           damageType={damageType}
+          hasRecharge={hasRecharge}
+          recharge={recharge}
         />
       </div>
     </>

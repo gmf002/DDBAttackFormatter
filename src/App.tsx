@@ -3,9 +3,7 @@ import { InputText } from "primereact/inputtext";
 import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
-
 import { Dropdown } from "primereact/dropdown";
-
 import "./App.css";
 import "primereact/resources/themes/bootstrap4-light-blue/theme.css";
 import { DisplayOutput } from "./components/DisplayOutput";

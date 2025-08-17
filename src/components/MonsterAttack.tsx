@@ -4,7 +4,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
-import { DisplayAttackOutput } from "./DisplayOutput";
+import { DisplayAttackOutput } from "./DisplayAttackOutput";
 import { Card } from "primereact/card";
 import { damageTypes } from "./damageTypes";
 

@@ -4,7 +4,7 @@ import { InputNumber } from "primereact/inputnumber";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Checkbox } from "primereact/checkbox";
 import { Dropdown } from "primereact/dropdown";
-import { DisplayOutput } from "./DisplayOutput";
+import { DisplayAttackOutput } from "./DisplayOutput";
 import { Card } from "primereact/card";
 import { damageTypes } from "./damageTypes";
 
@@ -160,7 +160,7 @@ function MonsterAttack() {
                 </div>
             </Card>
             <div className="card">
-                <DisplayOutput
+                <DisplayAttackOutput
                     attackName={attackName}
                     attackType={attackType}
                     toHitBonus={toHitBonus}

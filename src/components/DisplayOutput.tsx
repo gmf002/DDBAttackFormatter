@@ -12,7 +12,7 @@ interface props {
     hasRecharge: boolean;
     recharge: string;
 }
-export function DisplayOutput({
+export function DisplayAttackOutput({
     attackName,
     attackType,
     toHitBonus,

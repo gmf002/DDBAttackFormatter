@@ -5,6 +5,7 @@ import { TabView, TabPanel } from "primereact/tabview";
 
 import MonsterAttack from "./components/MonsterAttack";
 import RechargeAction from "./components/RechargeAction";
+import SuperHighlight from "./components/SuperHighlight";
 
 function App() {
     return (
@@ -15,6 +16,9 @@ function App() {
                 </TabPanel>
                 <TabPanel header="Monster Save Actions">
                     <RechargeAction />
+                </TabPanel>
+                <TabPanel header="Super Tooltip">
+                    <SuperHighlight />
                 </TabPanel>
             </TabView>
         </>

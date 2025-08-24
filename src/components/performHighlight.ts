@@ -82,8 +82,18 @@ const combatRules = [
     "Weapon Attack",
 ];
 
+const spellAreaRules = [
+    "Cone",
+    "Cube",
+    "Cylinder",
+    "Line",
+    "Emanation",
+    "Sphere",
+];
+
 export interface RulesSet {
     combat: boolean;
+    spellArea: boolean;
 }
 
 export interface HighlightSet {
@@ -94,7 +104,7 @@ export interface HighlightSet {
 }
 
 export function performHighlight(input: string, work: HighlightSet): string {
-    console.log("performing sub for "+JSON.stringify(work))
+    console.log("performing sub for " + JSON.stringify(work));
     let working = input;
     if (work.actions) {
         working = swapForTooltip(working, "action", actions);
@@ -109,13 +119,16 @@ export function performHighlight(input: string, work: HighlightSet): string {
         if (work.rules.combat) {
             working = swapForTooltip(working, "rules", combatRules);
         }
+        if (work.rules.spellArea) {
+            working = swapForTooltip(working, "rules", spellAreaRules);
+        }
     }
     return working;
 }
 
 function swapForTooltip(input: string, tooltip: string, words: string[]) {
     words.forEach((e) => {
-        var regex = new RegExp(`(${e})`, "gi");
+        const regex = new RegExp(`(${e})`, "gi");
         //console.log("Regex: ", regex);
         input = input.replace(regex, `[${tooltip}]$1[/${tooltip}]`);
     });

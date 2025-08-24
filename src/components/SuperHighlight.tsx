@@ -11,6 +11,8 @@ function SuperHighlight() {
     const [showSkills, setShowSkills] = useState(true);
     const [showRules, setShowRules] = useState(true);
     const [showCombat, setShowCombat] = useState(true);
+    const [showSpellArea, setShowSpellArea] = useState(true);
+
     let rulesClass = "";
     const work: HighlightSet = {
         actions: false,
@@ -29,11 +31,15 @@ function SuperHighlight() {
     }
 
     if (showRules) {
-        let rulesSet: RulesSet = {
+        const rulesSet: RulesSet = {
             combat: false,
+            spellArea: false,
         };
         if (showCombat) {
             rulesSet.combat = true;
+        }
+        if (showSpellArea) {
+            rulesSet.spellArea = true;
         }
         work.rules = rulesSet;
     } else {
@@ -53,18 +59,16 @@ function SuperHighlight() {
                     category. For example, if the skills category is selected it
                     will detect in the text any instance of a skill like
                     'acrobatics' and wrap it in the [skill] tag. Note that the
-                    rules section can be disabled entirely or selectively.
-                    
-                    The result is
-                    at the bottom of the page.
+                    rules section can be disabled entirely or selectively. The
+                    result is at the bottom of the page.
                 </div>
             </Card>
             <Card title="Selections:">
                 <div className="field grid">
-                    <label className="col-12 mb-2 md:col-2 md:mb-0">
+                    <label className="col-6 justify-content-end">
                         Substitute for Actions:
                     </label>
-                    <div className="col-12 md:col-10">
+                    <div className="col-6 justify-content-start">
                         <Checkbox
                             checked={showActions}
                             onChange={(e) =>
@@ -73,10 +77,10 @@ function SuperHighlight() {
                             className="w-4"
                         />
                     </div>
-                    <label className="col-12 mb-2 md:col-2 md:mb-0">
+                    <label className="col-6 justify-content-end">
                         Substitute for Conditions:
                     </label>
-                    <div className="col-12 md:col-10">
+                    <div className="col-6 justify-content-start">
                         <Checkbox
                             checked={showConditions}
                             onChange={(e) =>
@@ -85,10 +89,10 @@ function SuperHighlight() {
                             className="w-4"
                         />
                     </div>
-                    <label className="col-12 mb-2 md:col-2 md:mb-0">
+                    <label className="col-6 justify-content-end">
                         Substitute for Skills:
                     </label>
-                    <div className="col-12 md:col-10">
+                    <div className="col-6 justify-content-start">
                         <Checkbox
                             checked={showSkills}
                             onChange={(e) =>
@@ -97,10 +101,10 @@ function SuperHighlight() {
                             className="w-4"
                         />
                     </div>
-                    <label className="col-12 mb-2 md:col-2 md:mb-0">
+                    <label className="col-6 justify-content-end">
                         Substitute for Rules:
                     </label>
-                    <div className="col-12 md:col-10">
+                    <div className="col-6 justify-content-start">
                         <Checkbox
                             checked={showRules}
                             onChange={(e) =>
@@ -110,12 +114,12 @@ function SuperHighlight() {
                         />
                     </div>
                     <div className="col-12">
-                        <div className="field grid">
-                            <Card title="Rules" className={rulesClass}>
-                                <label className="col-12 mb-2 md:col-2 md:mb-0">
+                        <Card title="Rules" className={rulesClass}>
+                            <div className="field grid">
+                                <label className="col-6 justify-content-end">
                                     Substitute for Combat Rules:
                                 </label>
-                                <div className="col-12 md:col-10">
+                                <div className="col-6 justify-content-start">
                                     <Checkbox
                                         checked={showCombat}
                                         onChange={(e) =>
@@ -123,11 +127,25 @@ function SuperHighlight() {
                                                 e.checked ? true : false,
                                             )
                                         }
+                                        className="w-2"
+                                    />
+                                </div>
+                                <label className="col-6 justify-content-end">
+                                    Substitute for Spell Area Rules:
+                                </label>
+                                <div className="col-6 justify-content-start">
+                                    <Checkbox
+                                        checked={showSpellArea}
+                                        onChange={(e) =>
+                                            setShowSpellArea(
+                                                e.checked ? true : false,
+                                            )
+                                        }
                                         className="w-4"
                                     />
                                 </div>
-                            </Card>
-                        </div>
+                            </div>
+                        </Card>
                     </div>
                     <p></p>
                     <label className="col-12 mb-2 md:col-2 md:mb-0">

@@ -12,6 +12,8 @@ function SuperHighlight() {
     const [showRules, setShowRules] = useState(true);
     const [showCombat, setShowCombat] = useState(true);
     const [showSpellArea, setShowSpellArea] = useState(true);
+    const [showMovementAndExploration, setShowMovementAndExploration] =
+        useState(true);
 
     let rulesClass = "";
     const work: HighlightSet = {
@@ -34,12 +36,16 @@ function SuperHighlight() {
         const rulesSet: RulesSet = {
             combat: false,
             spellArea: false,
+            movementAndExploration: false,
         };
         if (showCombat) {
             rulesSet.combat = true;
         }
         if (showSpellArea) {
             rulesSet.spellArea = true;
+        }
+        if (showMovementAndExploration) {
+            rulesSet.movementAndExploration = true;
         }
         work.rules = rulesSet;
     } else {
@@ -138,6 +144,20 @@ function SuperHighlight() {
                                         checked={showSpellArea}
                                         onChange={(e) =>
                                             setShowSpellArea(
+                                                e.checked ? true : false,
+                                            )
+                                        }
+                                        className="w-4"
+                                    />
+                                </div>
+                                <label className="col-6 justify-content-end">
+                                    Substitute for Movement and Exploration Rules:
+                                </label>
+                                <div className="col-6 justify-content-start">
+                                    <Checkbox
+                                        checked={showMovementAndExploration}
+                                        onChange={(e) =>
+                                            setShowMovementAndExploration(
                                                 e.checked ? true : false,
                                             )
                                         }

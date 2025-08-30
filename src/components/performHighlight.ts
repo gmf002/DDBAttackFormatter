@@ -91,9 +91,33 @@ const spellAreaRules = [
     "Sphere",
 ];
 
+const movementAndExplanationRules = [
+    "Bright Light",
+    "Climbing",
+    "Crawling",
+    "Darkness",
+    "Difficult Terrain",
+    "Dim Light",
+    "Falling",
+    "Flying",
+    "Heavily Obscured",
+    "High Jump",
+    "Hover",
+    "Jumping",
+    "Lightly Obscured",
+    "Long Jump",
+    "Occupied Space",
+    "Passive Perception",
+    "Speed",
+    "Swimming",
+    "Unoccupied Space",
+];
+
 export interface RulesSet {
     combat: boolean;
     spellArea: boolean;
+    movementAndExploration: boolean;
+
 }
 
 export interface HighlightSet {
@@ -121,6 +145,9 @@ export function performHighlight(input: string, work: HighlightSet): string {
         }
         if (work.rules.spellArea) {
             working = swapForTooltip(working, "rules", spellAreaRules);
+        }
+        if (work.rules.movementAndExploration) {
+            working = swapForTooltip(working, "rules", movementAndExplanationRules);
         }
     }
     return working;
